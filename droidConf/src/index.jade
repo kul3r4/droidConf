@@ -1,0 +1,139 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Android development: from an idea to your first (tested) app
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+
+      section
+        h1 Android development: from an idea to your first (tested) app
+
+      section
+        h2 Chiara Chiappini
+        h3 Agile Software Developer @eBay
+        h3 <a href="http://twitter.com/chiarachiappini">@chiarachiappini</a>
+
+      section.idea-background
+        h2 you've got the million pound idea
+
+      section.my-idea-background
+        h2 What's the weather like in Richmond today?
+
+      section
+        h2 let's build my idea
+          h3.bullet
+          br
+          ul
+            li Install tools following <a href="https://developer.android.com/training/basics/firstapp/index.html">Android Developers website</a>
+
+
+      section
+        h2 let's code the first activity
+        pre.size-dimension
+          code
+            | public class MainActivity extends Activity {
+
+            |     @Override
+            |     protected void onCreate(Bundle savedInstanceState) {
+            |         super.onCreate(savedInstanceState);
+            |         setContentView(R.layout.activity_main);
+            |     }
+
+        pre.size-dimension
+          code
+            | &#60;Button android:layout_width="wrap_content"
+            |     android:layout_height="wrap_content"
+            |     android:text="@string/weather_richmond"
+            |     android:id="@+id/weather_button"
+            |     android:layout_alignParentTop="true"
+            |     android:layout_alignParentStart="true" /&#62;;
+
+      section
+        h2 let's code the second activity
+        pre.size-dimension
+          code
+            | public class WeatherActivity extends Activity {
+
+            |      @Override
+            |      protected void onCreate(Bundle savedInstanceState) {
+            |          super.onCreate(savedInstanceState);
+            |          setContentView(R.layout.activity_weather);
+            |      }
+
+        pre.size-dimension
+          code
+            | &#60;TextView android:text="@string/sun_is_shining"
+            |   android:layout_width="wrap_content"
+            |   android:layout_height="wrap_content" /&#62;;
+
+      section
+        h2 Result
+
+      section
+        h2 Now the real fun starts
+        br
+        ul
+          li New features
+          li Someone is joining you
+
+      section
+        h2 I need testing
+
+      section
+        h2 Testing frameworks for Android
+
+      section
+        h2 Unit testing
+        br
+        ul
+          li Extract all the java code in a separate module and test as unit tests
+          li Unit testing support Android Studio 1.1
+          li Use Instrumentation or Robotium
+
+      section
+        h2 Java module - code
+        pre.size-dimension
+          code
+            | public class WeatherOracle {
+            |      public static final String SUN_IS_SHINING = "Sun is shining";
+
+            |      public String getWeather(){
+            |          return SUN_IS_SHINING;
+            |      }
+          
+      section
+        h2 Java module - test
+        pre.size-dimension
+          code
+            | public class WeatherOracleTest {
+            |   @Test
+            |   public void testWeatherOracle(){
+            |     WeatherOracle weatherOracle = new WeatherOracle();
+            |     assertEquals(WeatherOracle.SUN_IS_SHINING, weatherOracle.getWeather());
+            |   }
+
+
+      section
+        h2 Functional testing
+
+      section
+        h2 Testing and CI
+
+      section
+        h2 Your CI alternatives
+        h3.bullet
+        br
+        ul
+          li Travis
+          li Jenkins
+          li ..and may more
+      section
+        h2 My CI experience
+
+    script(src='build/build.js')
