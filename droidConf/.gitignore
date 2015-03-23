@@ -1,0 +1,20 @@
+build
+bin
+gen
+.svn
+local.properties
+/*/build.xml
+/*/tests/build.xml
+eBayMobile_build
+.DS_Store
+.settings
+proguard
+*/usage.txt
+*/dump.txt
+
+# Android Studio
+.idea
+!/.idea/codeStyleSettings.xml
+.gradle
+*.iws
+*.iml
