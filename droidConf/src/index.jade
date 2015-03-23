@@ -95,7 +95,18 @@ html
           li Extract all the java code in a separate module and test as unit tests
           li Unit testing support Android Studio 1.1
           li Use Instrumentation or Robotium
-
+          
+      section
+        h2 Java module - test
+        pre.size-dimension
+          code
+            | public class WeatherOracleTest {
+            |   @Test
+            |   public void testWeatherOracle(){
+            |     WeatherOracle weatherOracle = new WeatherOracle();
+            |     assertEquals(WeatherOracle.SUN_IS_SHINING, weatherOracle.getWeather());
+            |   }
+          
       section
         h2 Java module - code
         pre.size-dimension
@@ -108,19 +119,16 @@ html
             |      }
           
       section
-        h2 Java module - test
+        h2 Functional testing
         pre.size-dimension
           code
-            | public class WeatherOracleTest {
-            |   @Test
-            |   public void testWeatherOracle(){
-            |     WeatherOracle weatherOracle = new WeatherOracle();
-            |     assertEquals(WeatherOracle.SUN_IS_SHINING, weatherOracle.getWeather());
-            |   }
-
-
-      section
-        h2 Functional testing
+            | @Test
+            | public void userCanGetWeatherInLondon() {
+            |   WebElement weatherButton = driver.findElement(By.id("weather_button"));
+            |   Assert.assertTrue(weatherButton.isDisplayed());
+            |   weatherButton.click();
+            |   WebElement weatherText = driver.findElement(By.id("weather_text"));
+            |   Assert.assertEquals(WeatherOracle.SUN_IS_SHINING, weatherText.getText());
 
       section
         h2 Testing and CI

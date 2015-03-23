@@ -4,14 +4,25 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import static com.cchiappini.londonweather.MainActivity.*;
 
 
 public class WeatherActivity extends Activity {
 
+    private String weather;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weather2);
+        weather = getIntent().getStringExtra(WEATHER_EXTRA);
+
+        setContentView(R.layout.activity_weather);
+        View view = findViewById(R.id.weather_text_layout);
+        TextView weatherTextView  = (TextView) view.findViewById(R.id.weather_text);
+        weatherTextView.setText(weather);
     }
 
 
