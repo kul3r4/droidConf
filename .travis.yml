@@ -22,5 +22,6 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-    - ./gradlew --stacktrace --debug -DANDROID_HOME=/usr/local/android-sdk/ -DabsolutePathLocalAPK="londonWeather/build/outputs/apk/londonWeather-debug.apk" clean build test
+    - ls
+    - ./gradlew --stacktrace --debug -DANDROID_HOME=/usr/local/android-sdk/ -DabsolutePathLocalAPK="../londonWeather/build/outputs/apk/londonWeather-debug.apk" clean build test
 
