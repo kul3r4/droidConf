@@ -23,5 +23,5 @@ before_script:
 
 script:
     - ls
-    - ./gradlew --stacktrace --debug -DANDROID_HOME=/usr/local/android-sdk/ -DabsolutePathLocalAPK="../londonWeather/build/outputs/apk/londonWeather-debug.apk" clean build test
+    - ./gradlew --stacktrace --debug -DANDROID_HOME=/usr/local/android-sdk/ -DabsolutePathLocalAPK="/home/travis/build/kul3r4/droidConf/londonWeather/build/outputs/apk/londonWeather-debug.apk" clean build test
 
