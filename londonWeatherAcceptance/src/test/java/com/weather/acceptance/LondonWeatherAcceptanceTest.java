@@ -14,33 +14,40 @@ import io.selendroid.standalone.SelendroidConfiguration;
 import io.selendroid.standalone.SelendroidLauncher;
 import weather.WeatherOracle;
 
+import static org.junit.Assert.assertEquals;
+
 public class LondonWeatherAcceptanceTest {
 
-  private WebDriver driver;
+    private WebDriver driver;
 
-  @Before
-  public void setup() throws Exception {
-    SelendroidConfiguration config = new SelendroidConfiguration();
-    config.addSupportedApp("/Users/cchiappini/IProjects/droidConf/londonWeather/build/outputs/apk/londonWeather-debug.apk");
-    config.setPort(4444);
-    SelendroidLauncher selendroidServer = new SelendroidLauncher(config);
-    selendroidServer.launchSelendroid();
+    @Before
+    public void setup() throws Exception {
+        SelendroidConfiguration config = new SelendroidConfiguration();
+        config.addSupportedApp("/Users/cchiappini/IProjects/droidConf/londonWeather/build/outputs/apk/londonWeather-debug.apk");
+        config.setPort(4444);
+        SelendroidLauncher selendroidServer = new SelendroidLauncher(config);
+        selendroidServer.launchSelendroid();
 
-    SelendroidCapabilities capa = new SelendroidCapabilities("com.cchiappini.londonweather");
-    driver = new SelendroidDriver(capa);
-  }
+        SelendroidCapabilities capa = new SelendroidCapabilities("com.cchiappini.londonweather");
+        driver = new SelendroidDriver(capa);
+    }
 
-  @Test
-  public void userCanGetWeatherInLondon() {
-    WebElement weatherButton = driver.findElement(By.id("weather_button"));
-    Assert.assertTrue(weatherButton.isDisplayed());
-    weatherButton.click();
-    WebElement weatherText = driver.findElement(By.id("weather_text"));
-    Assert.assertEquals(WeatherOracle.SUN_IS_SHINING, weatherText.getText());
-  }
+    @Test
+    public void userCanGetWeatherInLondon() {
+        WebElement weatherButton = findElementById("weather_button");
 
-  @After
-  public void tearDown(){
-    driver.quit();
-  }
+        weatherButton.click();
+
+        WebElement weatherText = findElementById("weather_text");
+        assertEquals(WeatherOracle.SUN_IS_SHINING, weatherText.getText());
+    }
+
+    private WebElement findElementById(String id) {
+        return driver.findElement(By.id(id));
+    }
+
+    @After
+    public void tearDown() {
+        driver.quit();
+    }
 }

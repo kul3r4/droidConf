@@ -22,6 +22,5 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-    - ./gradlew :londonweatherlib:clean :londonweatherlib:build :londonWeather:clean :londonWeather:build
-    - ../gradlew -DANDROID_HOME=/usr/local/android-sdk/ test
+    - ./gradlew -DANDROID_HOME=/usr/local/android-sdk/ clean build test
 
