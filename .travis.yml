@@ -23,5 +23,5 @@ before_script:
 
 script:
     - ./gradlew :londonweatherlib:clean :londonweatherlib:build :londonWeather:clean :londonWeather:build
-    -
+    - ../gradlew -DANDROID_HOME=/usr/local/android-sdk/ test
 
