@@ -12,6 +12,7 @@ import java.net.URL;
 
 import io.selendroid.client.SelendroidDriver;
 import io.selendroid.common.SelendroidCapabilities;
+import io.selendroid.common.device.DeviceTargetPlatform;
 import io.selendroid.standalone.SelendroidConfiguration;
 import io.selendroid.standalone.SelendroidLauncher;
 import weather.WeatherOracle;
@@ -26,12 +27,14 @@ public class LondonWeatherAcceptanceTest {
     @Before
     public void setup() throws Exception {
         SelendroidConfiguration config = new SelendroidConfiguration();
-        config.addSupportedApp("../londonWeather/build/outputs/apk/londonWeather-debug.apk");
+        config.addSupportedApp(System.getProperty("absolutePathLocalAPK"));
         config.setPort(4444);
         SelendroidLauncher selendroidServer = new SelendroidLauncher(config);
         selendroidServer.launchSelendroid();
 
         SelendroidCapabilities capa = new SelendroidCapabilities("com.cchiappini.londonweather");
+        capa.setPlatformVersion(DeviceTargetPlatform.ANDROID19);
+        capa.setEmulator(true);
         driver = new SelendroidDriver(new URL("http://localhost:4444/wd/hub"), capa);
     }
 
