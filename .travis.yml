@@ -22,5 +22,5 @@ before_script:
   - adb shell input keyevent 82 &
 
 script:
-    - ./gradlew --stacktrace --debug -DhubURL=http://localhost:4444/wd/hub -DANDROID_HOME=/usr/local/android-sdk/ -DJAVA_HOME=/usr/lib/jvm/java-7-oracle clean build test
+    - ./gradlew --stacktrace --debug -DselendroidServerPort=9000 -DANDROID_HOME=/usr/local/android-sdk/ -DJAVA_HOME=/usr/lib/jvm/java-7-oracle clean build test
 
