@@ -25,6 +25,7 @@ public class LondonWeatherAcceptanceTest {
     public void setup() throws Exception {
         SelendroidConfiguration config = new SelendroidConfiguration();
         config.addSupportedApp("../londonWeather/build/outputs/apk/londonWeather-debug.apk");
+        config.setPort(4444);
         SelendroidLauncher selendroidServer = new SelendroidLauncher(config);
         selendroidServer.launchSelendroid();
 
