@@ -15,6 +15,7 @@ import io.selendroid.standalone.SelendroidLauncher;
 import weather.WeatherOracle;
 
 import static org.junit.Assert.assertEquals;
+import static weather.WeatherOracle.SUN_IS_SHINING;
 
 public class LondonWeatherAcceptanceTest {
 
@@ -24,7 +25,6 @@ public class LondonWeatherAcceptanceTest {
     public void setup() throws Exception {
         SelendroidConfiguration config = new SelendroidConfiguration();
         config.addSupportedApp("../londonWeather/build/outputs/apk/londonWeather-debug.apk");
-        config.setPort(4444);
         SelendroidLauncher selendroidServer = new SelendroidLauncher(config);
         selendroidServer.launchSelendroid();
 
@@ -34,12 +34,20 @@ public class LondonWeatherAcceptanceTest {
 
     @Test
     public void userCanGetWeatherInLondon() {
-        WebElement weatherButton = findElementById("weather_button");
+        WebElement weatherButton = findWeatherButton();
 
         weatherButton.click();
 
-        WebElement weatherText = findElementById("weather_text");
-        assertEquals(WeatherOracle.SUN_IS_SHINING, weatherText.getText());
+        WebElement weatherText = findWeatherText();
+        assertEquals(SUN_IS_SHINING, weatherText.getText());
+    }
+
+    private WebElement findWeatherText() {
+        return findElementById("weather_text");
+    }
+
+    private WebElement findWeatherButton() {
+        return findElementById("weather_button");
     }
 
     private WebElement findElementById(String id) {

@@ -99,36 +99,33 @@ html
       section
         h2 Java module - test
         pre.size-dimension
-          code
-            | public class WeatherOracleTest {
-            |   @Test
-            |   public void testWeatherOracle(){
-            |     WeatherOracle weatherOracle = new WeatherOracle();
-            |     assertEquals(WeatherOracle.SUN_IS_SHINING, weatherOracle.getWeather());
-            |   }
-          
+          code.language-javascript.
+            public class WeatherOracleTest {
+                @Test
+                public void testWeatherOracle(){
+                    assertEquals(SUN_IS_SHINING, weatherOracle.getWeather());
+                }
+
       section
         h2 Java module - code
         pre.size-dimension
-          code
-            | public class WeatherOracle {
-            |      public static final String SUN_IS_SHINING = "Sun is shining";
-
-            |      public String getWeather(){
-            |          return SUN_IS_SHINING;
-            |      }
+          code.language-javascript.
+            public class WeatherOracle {
+                public static final String SUN_IS_SHINING = "Sun is shining";<br>
+                public String getWeather(){
+                    return SUN_IS_SHINING;
+                }
           
       section
         h2 Functional testing
         pre.size-dimension
           code
             | @Test
-            | public void userCanGetWeatherInLondon() {
-            |   WebElement weatherButton = driver.findElement(By.id("weather_button"));
-            |   Assert.assertTrue(weatherButton.isDisplayed());
-            |   weatherButton.click();
-            |   WebElement weatherText = driver.findElement(By.id("weather_text"));
-            |   Assert.assertEquals(WeatherOracle.SUN_IS_SHINING, weatherText.getText());
+            | public void userCanGetWeatherInLondon() {<br>
+            |    WebElement weatherButton = findWeatherButton();<br>
+            |    weatherButton.click();<br>
+            |    WebElement weatherText = findWeatherText();
+            |    assertEquals(SUN_IS_SHINING, weatherText.getText());
 
       section
         h2 Testing and CI
