@@ -23,6 +23,6 @@ before_script:
 
 script:
     - ls londonWeather/build/outputs/apk/
-    - ./gradlew -DANDROID_HOME=/usr/local/android-sdk/ -DJAVA_HOME=/usr/lib/jvm/java-7-oracle clean build test
+    - ./gradlew --stacktrace -DANDROID_HOME=/usr/local/android-sdk/ -DJAVA_HOME=/usr/lib/jvm/java-7-oracle clean build test
     - ls londonWeather/build/outputs/apk/
 
