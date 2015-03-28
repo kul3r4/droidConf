@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.net.URL;
+
 import io.selendroid.client.SelendroidDriver;
 import io.selendroid.common.SelendroidCapabilities;
 import io.selendroid.standalone.SelendroidConfiguration;
@@ -24,13 +26,13 @@ public class LondonWeatherAcceptanceTest {
     @Before
     public void setup() throws Exception {
         SelendroidConfiguration config = new SelendroidConfiguration();
-        config.addSupportedApp("../londonWeather/build/outputs/apk/londonWeather-debug.apk");
+        config.addSupportedApp("/Users/cchiappini/IProjects/droidConfRefactor/londonWeather/build/outputs/apk/londonWeather-debug.apk");
         config.setPort(4444);
         SelendroidLauncher selendroidServer = new SelendroidLauncher(config);
         selendroidServer.launchSelendroid();
 
         SelendroidCapabilities capa = new SelendroidCapabilities("com.cchiappini.londonweather");
-        driver = new SelendroidDriver(capa);
+        driver = new SelendroidDriver(new URL("http://localhost:4444/wd/hub"), capa);
     }
 
     @Test
