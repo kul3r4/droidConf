@@ -14,140 +14,188 @@ html
       section
         h1 Android development: from an idea to your first (tested) app
 
-      section
-        h2 Chiara Chiappini
-        h3 Agile Software Developer @eBay
-        h3 <a href="http://twitter.com/chiarachiappini">@chiarachiappini</a>
+      section.richmond-view
+        div.background-div
+            h2 Chiara Chiappini
+            h3 Agile Software Developer @eBay
+            h3 <a href="http://twitter.com/chiarachiappini">@chiarachiappini</a>
+
+      section.richmond-food-background
+        div.background-div
+            h2 life is tough at eBay
 
       section.idea-background
-        h2 you've got the million pound idea
+        div.background-div
+            h2 you've got the million pound idea
 
       section.my-idea-background
-        h2 What's the weather like in Richmond today?
+        div.background-div
+            h2 What's the weather like in Richmond today?
+
+      section.baby-lego-background
+          div.background-div
+            h2 let's build my idea
+              h3.bullet
+                  ul
+                    li Install tools following <a href="https://developer.android.com/training/basics/firstapp/index.html">Android Developers website</a>
+
+
+      section.first-activity-background
+        div.background-div
+            h2 let's code the first activity
+            pre.size-dimension
+              code
+                | public class MainActivity extends Activity {
+
+                |     @Override
+                |     protected void onCreate(Bundle savedInstanceState) {
+                |         super.onCreate(savedInstanceState);
+                |         setContentView(R.layout.activity_main);
+                |     }
+
+            pre.size-dimension
+              code
+                | &#60;Button android:layout_width="wrap_content"
+                |     android:layout_height="wrap_content"
+                |     android:text="@string/weather_richmond"
+                |     android:id="@+id/weather_button"
+                |     android:layout_alignParentTop="true"
+                |     android:layout_alignParentStart="true" /&#62;;
+
+      section.second-activity-background
+        div.background-div
+            h2 let's code the second activity
+            pre.size-dimension
+              code
+                | public class WeatherActivity extends Activity {
+
+                |      @Override
+                |      protected void onCreate(Bundle savedInstanceState) {
+                |          super.onCreate(savedInstanceState);
+                |          setContentView(R.layout.activity_weather);
+                |      }
+
+            pre.size-dimension
+              code
+                | &#60;TextView android:text="@string/sun_is_shining"
+                |   android:layout_width="wrap_content"
+                |   android:layout_height="wrap_content" /&#62;;
 
       section
-        h2 let's build my idea
-          h3.bullet
-          br
-          ul
-            li Install tools following <a href="https://developer.android.com/training/basics/firstapp/index.html">Android Developers website</a>
+        div.background-div
+            h2 Result
 
+      section.people-coding-background
+        div.background-div
+            h2.bullet Now the real fun starts
+            br
+            ul
+              li New features
+              li Someone is joining you
 
-      section
-        h2 let's code the first activity
-        pre.size-dimension
-          code
-            | public class MainActivity extends Activity {
-
-            |     @Override
-            |     protected void onCreate(Bundle savedInstanceState) {
-            |         super.onCreate(savedInstanceState);
-            |         setContentView(R.layout.activity_main);
-            |     }
-
-        pre.size-dimension
-          code
-            | &#60;Button android:layout_width="wrap_content"
-            |     android:layout_height="wrap_content"
-            |     android:text="@string/weather_richmond"
-            |     android:id="@+id/weather_button"
-            |     android:layout_alignParentTop="true"
-            |     android:layout_alignParentStart="true" /&#62;;
+      section.quality
+        div.background-div
+            h2 I need testing
 
       section
-        h2 let's code the second activity
-        pre.size-dimension
-          code
-            | public class WeatherActivity extends Activity {
-
-            |      @Override
-            |      protected void onCreate(Bundle savedInstanceState) {
-            |          super.onCreate(savedInstanceState);
-            |          setContentView(R.layout.activity_weather);
-            |      }
-
-        pre.size-dimension
-          code
-            | &#60;TextView android:text="@string/sun_is_shining"
-            |   android:layout_width="wrap_content"
-            |   android:layout_height="wrap_content" /&#62;;
+        div.background-div
+            h2 Testing frameworks for Android
 
       section
-        h2 Result
-
-      section
-        h2 Now the real fun starts
-        br
-        ul
-          li New features
-          li Someone is joining you
-
-      section
-        h2 I need testing
-
-      section
-        h2 Testing frameworks for Android
-
-      section
-        h2 Unit testing
-        br
-        ul
-          li Extract all the java code in a separate module and test as unit tests
-          li Unit testing support Android Studio 1.1
-          li Use Instrumentation or Robotium
+        div.background-div
+            h2 Unit testing
+            br
+            ul
+              li Extract all the java code in a separate module and test as unit tests
+              li Unit testing support Android Studio 1.1
+              li Use Instrumentation or Robotium
           
       section
-        h2 Java module - test
-        pre.size-dimension
-          code.language-javascript.
-            public class WeatherOracleTest {
-                @Test
-                public void testWeatherOracle(){
-                    assertEquals(SUN_IS_SHINING, weatherOracle.getWeather());
-                }
+        div.background-div
+            h2 Java module - test
+            pre.size-dimension
+              code.language-javascript.
+                public class WeatherOracleTest {
+                    @Test
+                    public void testWeatherOracle(){
+                        assertEquals(SUN_IS_SHINING, weatherOracle.getWeather());
+                    }
 
       section
-        h2 Java module - code
-        pre.size-dimension
-          code.language-javascript.
-            public class WeatherOracle {
-                public static final String SUN_IS_SHINING = "Sun is shining";<br>
-                public String getWeather(){
-                    return SUN_IS_SHINING;
-                }
+        div.background-div
+            h2 Java module - code
+            pre.size-dimension
+              code.language-javascript.
+                public class WeatherOracle {
+                    public static final String SUN_IS_SHINING = "Sun is shining";<br>
+                    public String getWeather(){
+                        return SUN_IS_SHINING;
+                    }
           
       section
-        h2 Functional testing
-        pre.size-dimension
-          code
-            | @Test
-            | public void userCanGetWeatherInLondon() {<br>
-            |    WebElement weatherButton = findWeatherButton();<br>
-            |    weatherButton.click();<br>
-            |    WebElement weatherText = findWeatherText();
-            |    assertEquals(SUN_IS_SHINING, weatherText.getText());
+        div.background-div
+            h2 Functional testing
+            pre.size-dimension
+              code
+                | @Test
+                | public void userCanGetWeatherInLondon() {<br>
+                |    WebElement weatherButton = findWeatherButton();<br>
+                |    weatherButton.click();<br>
+                |    WebElement weatherText = findWeatherText();
+                |    assertEquals(SUN_IS_SHINING, weatherText.getText());
 
       section
-        h2 Testing and CI
-        h3 Get feedback as early as possible (you’ll be fixing things late)
-        h3 First step to continue deployment?
-        h3 CI tools help to facilitate not only building, testing and deploying software, but the entire release process
-        h3 Importance of alerting
+        div.background-div
+            h2 Testing and CI
+            h3 Get feedback as early as possible (you’ll be fixing things late)
+            h3 CI tools help to facilitate not only building, testing and deploying software, but the entire release process
+            h3 Importance of alerting
+            h3 Record their result
+            h3 First step to continue deployment?
 
       section
-        h2 Your CI alternatives
-        h3.bullet
-        br
-        ul
-          li Travis
-          li Jenkins
-          li ..and many more
+        div.background-div
+            h2 Your CI alternatives
+            h3.bullet
+            br
+            ul
+              li Travis
+              li Jenkins
+              li ..and many more
+
+      section.queue
+        div.background-div
+            h2 Travis
+            h3.bullet
+            br
+            ul
+                li free for public repositories
+                li community boxes and in queues
+                li subscription for no waiting and concurrent jobs
 
       section
-        h2 Travis: quick and simple
-        h3
-        h3 Public repositories on Github can use Travis CI for free, but they share community boxes and sit in queues. To use a private repository with Travis CI you can subscribe to one of their plans and get your project built without waiting, plus you can have concurrent jobs.
+        div.background-div
+            h2 Travis configuration
+            h3 .travis.yml
+            pre.size-dimension
+                code
+                    | language: android
+                    | jdk: oraclejdk7
+                    |  env:
+                    |  matrix:
+                    |     - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+                    | ...<br>
+                    | before_script:
+                    |   # Create and start emulator
+                    |    - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+                    |    - emulator -avd test -no-skin -no-audio -no-window &
+                    |    - adb wait-for-device
+                    |    - adb shell input keyevent 82 &<br>
+                    |  script:
+                    |      - ./gradlew clean build
+
       section
-        h2 My CI little story
+        div.background-div
+            h2 My CI little story
 
     script(src='build/build.js')
