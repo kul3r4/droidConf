@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="android-driver-app-0.15.0">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.selendroid/android-driver-app/0.15.0/e1f4c5c74a4198cbf255ae775296604433338ca8/android-driver-app-0.15.0.apk" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.selendroid/android-driver-app/0.15.0/65d306299f3a41eafac2d491854aa5d76ee8a7f5/android-driver-app-0.15.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
