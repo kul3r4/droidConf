@@ -33,7 +33,7 @@ public class LondonWeatherAcceptanceTest {
         selendroidServer.launchSelendroid();
 
         SelendroidCapabilities capa = new SelendroidCapabilities("com.cchiappini.londonweather");
-        capa.setPlatformVersion(DeviceTargetPlatform.ANDROID19);
+        capa.setPlatformVersion(DeviceTargetPlatform.ANDROID18);
         driver = new SelendroidDriver(new URL("http://localhost:4444/wd/hub"), capa);
     }
 
