@@ -6,8 +6,8 @@ android {
 
     defaultConfig {
         applicationId "com.cchiappini.londonweather"
-        minSdkVersion 19
-        targetSdkVersion 18
+        minSdkVersion 18
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
