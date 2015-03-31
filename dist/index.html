@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Android development: from an idea to your first (tested) app</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css">
+  </head>
+  <body>
+    <article>
+      <section class="rice-fields">
+        <div class="background-div">
+          <h1>From an idea to your first (tested) app</h1>
+        </div>
+      </section>
+      <section class="richmond-view">
+        <div class="background-div">
+          <h2>Chiara Chiappini</h2>
+          <h3>Agile Software Developer @eBay</h3>
+          <h3><a href="http://twitter.com/chiarachiappini">@chiarachiappini</a></h3>
+          <h3><a href="https://github.com/kul3r4/droidConf">https://github.com/kul3r4</a></h3>
+        </div>
+      </section>
+      <section class="richmond-food-background">
+        <div class="background-div">
+          <h2>Life is tough at eBay</h2>
+        </div>
+      </section>
+      <section class="richmond-walk">
+        <div class="background-div">
+          <h2>lunch time walk</h2>
+        </div>
+      </section>
+      <section class="rainy-london">
+        <div class="background-div">
+          <h2>weather today?</h2>
+        </div>
+      </section>
+      <section class="baby-lego-background">
+        <div class="background-div">
+          <h2>Time to build
+            <h3 class="bullet">
+              <ul>
+                <li><a href="https://developer.android.com/training/basics/firstapp/index.html">Android studio</a></li>
+                <li><a href="https://www.genymotion.com/#!/">Genymotion</a></li>
+                <li><a href="https://gradle.org/">Gradle</a></li>
+              </ul>
+            </h3>
+          </h2>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h2>Layout</h2><html>
+<head>
+<title>activity_main.xml</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { }
+.s1 { color: rgb(0,0,128); font-weight: bold; }
+.s2 { color: rgb(0,0,255); font-weight: bold; }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+.s4 { color: rgb(128,128,128); font-style: italic; }
+.text-left {text-align: left; font-size: 17px; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<pre class="text-left">
+<span class="s0">&lt;</span><span class="s1">RelativeLayout ...</span><span class="s0">&gt;</span>
+ 
+    &lt;<span class="s1">Toolbar </span><span class="s2">android:id=</span><span class="s3">&quot;@+id/weather_toolbar&quot;</span>...</span><span class="s0">/&gt;
+ 
+    &lt;</span><span class="s1">LinearLayout </span><span class="s2">android:id=</span><span class="s3">&quot;@+id/weather_info_layout&quot;</span>...<span class="s0">/&gt;
+ 
+        &lt;</span><span class="s1">TextView </span><span class="s2">android:id=</span><span class="s3">&quot;@+id/weather_description&quot;</span>...<span class="s0">/&gt;
+ 
+        &lt;</span><span class="s1">TextView </span><span class="s2">android:id=</span><span class="s3">&quot;@+id/weather_temp&quot;</span>...<span class="s0">/&gt;
+ 
+        &lt;</span><span class="s1">View </span>...<span class="s0">/&gt;
+ 
+        &lt;</span><span class="s1">ImageView </span><span class="s2">android:id=</span><span class="s3">&quot;@+id/weather_icon&quot;</span>...<span class="s0">/&gt;
+
+    &lt;/</span><span class="s1">LinearLayout </span>
+
+<span class="s0">&lt;/</span><span class="s1">RelativeLayout </span><span class="s0">&gt;
+
+</span></pre>
+</body>
+</html>
+        </div>
+      </section>
+      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">protected void onCreate(Bundle savedInstanceState) {
+    ........
+
+    toolbar = (Toolbar) findViewById(weather_toolbar);
+    toolbar.setTitle("Richmond");
+    setSupportActionBar(toolbar);<br>
+
+    tempView =(TextView) findViewById(weather_temp);
+    tempView.setText(15);<br>
+
+    descriptionView = (TextView) findViewById(weather_description);
+    descriptionView.setText("Sun is shining");<br>
+
+    iconView = (ImageView) findViewById(weather_icon);
+    iconView.setImageResource(R.drawable.sun);
+</code></pre>
+      </section>
+      <section class="green"><img src="images/shapshot1.png" class="img-fit"></section>
+      <section class="people-coding-background">
+        <div class="background-div">
+          <h2 class="bullet">Now the real fun starts</h2><br>
+          <ul>
+            <li>new features</li>
+            <li>new coworkers</li>
+          </ul>
+        </div>
+      </section>
+      <section class="quality">
+        <div class="background-div">
+          <h2>I need testing</h2>
+        </div>
+      </section>
+      <section class="sweets">
+        <div class="background-div">
+          <h2>Testing frameworks for Android</h2>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h2>Unit testing</h2>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h2 class="bullet">Modules</h2><img src="images/modules.png" class="img-small"><br><br>
+          <ul>
+            <li>separation of concerns</li>
+            <li>reusability</li>
+            <li>supported by Android Studio</li>
+          </ul>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h2 class="bullet">Java module</h2><br>
+          <ul>
+            <li>Junit tests</li>
+          </ul>
+        </div>
+      </section>
+      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">@Test
+public void shouldReturnASunnyWeather(){
+    Weather expectedWeather =
+        new Weather(SUN_IS_SHINING, TEMPERATURE, ICON_ID);
+    assertEquals(expectedWeather, weatherOracle.getWeather());
+}
+</code></pre>
+      </section>
+      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">public class WeatherOracle {
+    public static final String SUN_IS_SHINING = "Sun is shining";
+    public static final double TEMPERATURE = 15.0;
+    public static final String ICON_ID = "sun";
+    public Weather getWeather(){
+        return new Weather(SUN_IS_SHINING, TEMPERATURE, ICON_ID);
+    }
+}
+</code></pre>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h2 class="bullet">Android module</h2><br>
+          <ul>
+            <li>Android test framework</li>
+            <li>Robolectric</li>
+            <li>Unit testing support Android Studio 1.1</li>
+          </ul>
+        </div>
+      </section>
+      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">@RunWith(com.cchiappini.londonweather.RobolectricGradleTestRunner.class)
+public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
+
+    ...
+
+    @Before
+    public void setUp() throws Exception {
+        mainActivity = Robolectric.buildActivity(MainActivity.class).create().get();
+    }
+
+    @Test
+    public void testMainActivity() {
+        assertNotNull(mainActivity.findViewById(R.id.weather_toolbar));
+        assertNotNull(mainActivity.findViewById(R.id.weather_description));
+        assertNotNull(mainActivity.findViewById(R.id.weather_temp));
+        assertNotNull(mainActivity.findViewById(R.id.weather_icon));
+    }
+
+
+</code></pre>
+      </section>
+      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">public class WeatherIconMapperTest {
+    @Test
+    public void shouldReturnTheRightIconWhenSunny()
+            throws IconNotFoundException {
+        Weather weather = new Weather(WEATHER_DESCRIPTION,
+                WEATHER_TEMPERATURE, SUN_ICON_ID);
+        int expectedIcon = R.drawable.sun;
+        assertEquals(expectedIcon,
+                getIconResourceIdForWeather(weather));
+        }
+
+</code></pre>
+      </section>
+      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">public void shouldThrowAnExceptionWhenIconIsNotFound()
+        throws IconNotFoundException {
+    Weather weather = new Weather(A_WEATHER_DESCRIPTION,
+        A_WEATHER_TEMPERATURE, UNKNOWN_ICON_ID);
+    int expectedIcon = R.drawable.sun;
+    assertEquals(expectedIcon,getIconResourceIdForWeather(weather));
+}
+
+</code></pre>
+      </section>
+      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">public class WeatherIconMapper {
+
+    public static int getIconResourceIdForWeather(Weather weather)
+            throws IconNotFoundException {
+        if(weather.getWeatherIconId().equals("sun")) {
+            return R.drawable.sun;
+        }
+        throw new IconNotFoundException();
+    }
+}
+</code></pre>
+      </section>
+      <section class="doughnuts">
+        <div class="background-div">
+          <h2>Functional testing</h2><br>
+          <ul>
+            <li>Selendroid</li>
+            <li>Calabash</li>
+            <li>Robotium</li>
+            <li>Appium</li>
+            <li>Espresso</li>
+            <li>...</li>
+          </ul>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h2 class="bullet">Selendroid</h2><br>
+          <ul>
+            <li>open source automation framework</li>
+            <li>android native, hybrid and mobile web application</li>
+            <li>emulator and real device</li>
+            <li>Json Wire Protocol to run webdriver test scripts on device</li>
+            <li>integration with selenium grid for parallel execution on multiple node</li>
+          </ul>
+        </div>
+      </section>
+      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">@Test
+public void userCanGetWeatherDescription() {
+    WebElement weatherText = findWeatherText();
+    assertEquals(SUN_IS_SHINING, weatherText.getText());
+}
+
+@Test
+public void userCanGetWeatherTemperature() {
+    WebElement weatherTemp = findTemperatureText();
+    assertEquals(EXPECTED_TEMPERATURE, weatherTemp.getText());
+}
+</code></pre>
+      </section>
+      <section class="nutella">
+        <div class="background-div">
+          <h2>Testing and CI</h2>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h2 class="bullet">Continuous Integration</h2><br>
+          <ul>
+            <li>early feedback</li>
+            <li>team peace of mind and alerting</li>
+            <li>standardized build</li>
+            <li>record of result</li>
+            <li>support release process</li>
+            <li>first step to continue deployment</li>
+          </ul>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h2 class="bullet">Your CI alternatives</h2><br>
+          <ul>
+            <li>Travis</li>
+            <li>Jenkins</li>
+            <li>..and many more</li>
+          </ul>
+        </div>
+      </section>
+      <section class="queue">
+        <div class="background-div">
+          <h2 class="bullet">Travis</h2><br>
+          <ul>
+            <li>free for public repositories</li>
+            <li>community boxes and in queues</li>
+            <li>subscription for no waiting and concurrent jobs</li>
+          </ul>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h3>.travis.yml</h3>
+          <pre class="size-dimension"><code>language: android
+jdk: oraclejdk7
+ env:
+ matrix:
+    - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+...<br>
+before_script:
+  # Create and start emulator
+   - echo no | android create avd --force -n test
+      -t $ANDROID_TARGET --abi $ANDROID_ABI
+   - emulator -avd test -no-skin -no-audio -no-window &
+   - adb wait-for-device
+   - adb shell input keyevent 82 &<br>
+ script:
+     - ./gradlew clean build</code></pre>
+        </div>
+      </section>
+      <section class="green"><img src="images/travis-snaphot1.png" class="img-fit"></section>
+      <section class="green">
+        <div class="background-div"><img src="images/jenkins_logo.png" class="img-fit bullet"><br>
+          <ul>
+            <li>plugins</li>
+            <li>support the entire deployment pipeline</li>
+            <li>web interface</li>
+            <li>manually updating</li>
+          </ul>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div"><img src="images/chef.svg" class="img-fit bullet"><br><br>
+          <ul>
+            <li>infrastructure as code</li>
+            <li>automate your infrastructure</li>
+            <li>more maintainable, versionable, testable and collaborative</li>
+          </ul>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h2>Jenkins for Android and Chef</h2>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
+          <h2>Jenkins jobs</h2>
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div"></div>
+      </section>
+    </article>
+    <script src="build/build.js"></script>
+  </body>
+</html>
