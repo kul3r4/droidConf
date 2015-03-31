@@ -1,0 +1,334 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Android development: from an idea to your first (tested) app
+
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+
+      section.rice-fields
+        div.background-div
+            h1 From an idea to your first (tested) app
+
+      section.richmond-view
+        div.background-div
+            h2 Chiara Chiappini
+            h3 Agile Software Developer @eBay
+            h3 <a href="http://twitter.com/chiarachiappini">@chiarachiappini</a>
+            h3 <a href="https://github.com/kul3r4/droidConf">https://github.com/kul3r4</a>
+
+      section.richmond-food-background
+        div.background-div
+            h2 Life is tough at eBay
+
+      section.richmond-walk
+        div.background-div
+            h2 lunch time walk
+
+      section.rainy-london
+        div.background-div
+            h2 weather today?
+
+      section.baby-lego-background
+          div.background-div
+            h2 Time to build
+              h3.bullet
+                  ul
+                    li <a href="https://developer.android.com/training/basics/firstapp/index.html">Android studio</a>
+                    li <a href="https://www.genymotion.com/#!/">Genymotion</a>
+                    li <a href="https://gradle.org/">Gradle</a>
+
+      section.green
+        div.background-div
+            h2 Layout
+            include activity_main.html
+
+      section.green
+            pre.size-dimension
+                code.language-javascript.
+                     protected void onCreate(Bundle savedInstanceState) {
+                         ........
+
+                         toolbar = (Toolbar) findViewById(weather_toolbar);
+                         toolbar.setTitle("Richmond");
+                         setSupportActionBar(toolbar);<br>
+
+                         tempView =(TextView) findViewById(weather_temp);
+                         tempView.setText(15);<br>
+
+                         descriptionView = (TextView) findViewById(weather_description);
+                         descriptionView.setText("Sun is shining");<br>
+
+                         iconView = (ImageView) findViewById(weather_icon);
+                         iconView.setImageResource(R.drawable.sun);
+
+      section.green
+        img.img-fit(src="images/shapshot1.png")
+
+      section.people-coding-background
+        div.background-div
+            h2.bullet Now the real fun starts
+            br
+            ul
+              li new features
+              li new coworkers
+
+      section.quality
+        div.background-div
+            h2 I need testing
+
+      section.sweets
+        div.background-div
+            h2 Testing frameworks for Android
+
+      section.green
+        div.background-div
+            h2 Unit testing
+
+      section.green
+        div.background-div
+            h2.bullet Modules
+            img.img-small(src="images/modules.png")
+            br
+            br
+            ul
+                li separation of concerns
+                li reusability
+                li supported by Android Studio
+
+      section.green
+        div.background-div
+            h2.bullet Java module
+            br
+            ul
+              li Junit tests
+          
+      section.green
+            pre.size-dimension
+                code.language-javascript.
+                    @Test
+                    public void shouldReturnASunnyWeather(){
+                        Weather expectedWeather =
+                            new Weather(SUN_IS_SHINING, TEMPERATURE, ICON_ID);
+                        assertEquals(expectedWeather, weatherOracle.getWeather());
+                    }
+
+      section.green
+            pre.size-dimension
+                code.language-javascript.
+                    public class WeatherOracle {
+                        public static final String SUN_IS_SHINING = "Sun is shining";
+                        public static final double TEMPERATURE = 15.0;
+                        public static final String ICON_ID = "sun";
+                        public Weather getWeather(){
+                            return new Weather(SUN_IS_SHINING, TEMPERATURE, ICON_ID);
+                        }
+                    }
+
+      section.green
+              div.background-div
+                  h2.bullet Android module
+                  br
+                  ul
+                      li Android test framework
+                      li Robolectric
+                      li Unit testing support Android Studio 1.1
+
+      section.green
+        pre.size-dimension
+            code.language-javascript.
+                @RunWith(com.cchiappini.londonweather.RobolectricGradleTestRunner.class)
+                public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
+
+                    ...
+
+                    @Before
+                    public void setUp() throws Exception {
+                        mainActivity = Robolectric.buildActivity(MainActivity.class).create().get();
+                    }
+
+                    @Test
+                    public void testMainActivity() {
+                        assertNotNull(mainActivity.findViewById(R.id.weather_toolbar));
+                        assertNotNull(mainActivity.findViewById(R.id.weather_description));
+                        assertNotNull(mainActivity.findViewById(R.id.weather_temp));
+                        assertNotNull(mainActivity.findViewById(R.id.weather_icon));
+                    }
+
+
+
+      section.green
+            pre.size-dimension
+                code.language-javascript.
+                    public class WeatherIconMapperTest {
+                        @Test
+                        public void shouldReturnTheRightIconWhenSunny()
+                                throws IconNotFoundException {
+                            Weather weather = new Weather(WEATHER_DESCRIPTION,
+                                    WEATHER_TEMPERATURE, SUN_ICON_ID);
+                            int expectedIcon = R.drawable.sun;
+                            assertEquals(expectedIcon,
+                                    getIconResourceIdForWeather(weather));
+                            }
+
+
+      section.green
+        pre.size-dimension
+                      code.language-javascript.
+                            public void shouldThrowAnExceptionWhenIconIsNotFound()
+                                    throws IconNotFoundException {
+                                Weather weather = new Weather(A_WEATHER_DESCRIPTION,
+                                    A_WEATHER_TEMPERATURE, UNKNOWN_ICON_ID);
+                                int expectedIcon = R.drawable.sun;
+                                assertEquals(expectedIcon,getIconResourceIdForWeather(weather));
+                            }
+
+
+      section.green
+              pre.size-dimension
+                  code.language-javascript.
+                    public class WeatherIconMapper {
+
+                        public static int getIconResourceIdForWeather(Weather weather)
+                                throws IconNotFoundException {
+                            if(weather.getWeatherIconId().equals("sun")) {
+                                return R.drawable.sun;
+                            }
+                            throw new IconNotFoundException();
+                        }
+                    }
+
+      section.doughnuts
+              div.background-div
+                  h2 Functional testing
+                  br
+                  ul
+                    li Selendroid
+                    li Calabash
+                    li Robotium
+                    li Appium
+                    li Espresso
+                    li ...
+
+      section.green
+        div.background-div
+            h2.bullet Selendroid
+            br
+            ul
+                li open source automation framework
+                li android native, hybrid and mobile web application
+                li emulator and real device
+                li Json Wire Protocol to run webdriver test scripts on device
+                li integration with selenium grid for parallel execution on multiple node
+
+      section.green
+            pre.size-dimension
+                code.language-javascript.
+                    @Test
+                    public void userCanGetWeatherDescription() {
+                        WebElement weatherText = findWeatherText();
+                        assertEquals(SUN_IS_SHINING, weatherText.getText());
+                    }
+
+                    @Test
+                    public void userCanGetWeatherTemperature() {
+                        WebElement weatherTemp = findTemperatureText();
+                        assertEquals(EXPECTED_TEMPERATURE, weatherTemp.getText());
+                    }
+
+      section.nutella
+        div.background-div
+            h2 Testing and CI
+
+      section.green
+        div.background-div
+            h2.bullet Continuous Integration
+            br
+            ul
+                li early feedback
+                li team peace of mind and alerting
+                li standardized build
+                li record of result
+                li support release process
+                li first step to continue deployment
+
+      section.green
+        div.background-div
+            h2.bullet Your CI alternatives
+            br
+            ul
+              li Travis
+              li Jenkins
+              li ..and many more
+
+      section.queue
+        div.background-div
+            h2.bullet Travis
+            br
+            ul
+                li free for public repositories
+                li community boxes and in queues
+                li subscription for no waiting and concurrent jobs
+
+      section.green
+        div.background-div
+            h3 .travis.yml
+            pre.size-dimension
+                code
+                    | language: android
+                    | jdk: oraclejdk7
+                    |  env:
+                    |  matrix:
+                    |     - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a
+                    | ...<br>
+                    | before_script:
+                    |   # Create and start emulator
+                    |    - echo no | android create avd --force -n test
+                    |       -t $ANDROID_TARGET --abi $ANDROID_ABI
+                    |    - emulator -avd test -no-skin -no-audio -no-window &
+                    |    - adb wait-for-device
+                    |    - adb shell input keyevent 82 &<br>
+                    |  script:
+                    |      - ./gradlew clean build
+
+      section.green
+        img.img-fit(src="images/travis-snaphot1.png")
+
+      section.green
+        div.background-div
+                img.img-fit(src="images/jenkins_logo.png").bullet
+                br
+                ul
+                    li plugins
+                    li support the entire deployment pipeline
+                    li web interface
+                    li manually updating
+
+      section.green
+        div.background-div
+            img.img-fit(src="images/chef.svg").bullet
+            br
+            br
+            ul
+                li infrastructure as code
+                li automate your infrastructure
+                li more maintainable, versionable, testable and collaborative
+
+      section.green
+        div.background-div
+            h2 Jenkins for Android and Chef
+
+      section.green
+        div.background-div
+            h2 Jenkins jobs
+
+      section.green
+        div.background-div
+
+
+    script(src='build/build.js')

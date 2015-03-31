@@ -1,0 +1,7 @@
+{
+  "name": "presentation-android-development-from-an-idea-to-your-first-tested-app",
+  "version": "0.0.0",
+  "dependencies": {
+    "prism": "gh-pages"
+  }
+}

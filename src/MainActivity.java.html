@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>MainActivity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { }
+.s1 { color: rgb(0,0,128); font-weight: bold; align-text: left}
+.s2 { color: rgb(0,128,0); font-weight: bold; align-text: left}
+.s3 { color: rgb(128,128,128); font-style: italic; align-text: left}
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<pre>
+<span class="s0">@Override 
+    </span><span class="s1">protected void </span><span class="s0">onCreate(Bundle savedInstanceState) { 
+        </span><span class="s1">super</span><span class="s0">.onCreate(savedInstanceState); 
+        setContentView(R.layout.activity_main); 
+        Weather currentWeather = getWeather(); 
+        String weatherDescription = &quot;SUN IS SHINING&quot;;
+        toolbar = (Toolbar) findViewById(R.id.weather_toolbar); 
+        toolbar.setTitle(</span><span class="s2">&quot;Richmond&quot;</span><span class="s0">); 
+        setSupportActionBar(toolbar); 
+ 
+        tempView =(TextView) findViewById(R.id.weather_temp); 
+        tempView.setText(String.format(</span><span class="s2">&quot;%.0f&quot;</span><span class="s0">,currentWeather.getTemperature())); 
+ 
+        descriptionView = (TextView) findViewById(R.id.weather_description); 
+        descriptionView.setText(weatherDescription); 
+ 
+        iconView = (ImageView) findViewById(R.id.weather_icon); 
+        </span><span class="s0">{
+            iconView.setImageResource(WeatherIconMapper.getIconResourceIdForWeather(currentWeather)); 
+         </span></pre>
+</body>
+</html>
