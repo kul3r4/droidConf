@@ -1,7 +1,7 @@
 package com.cchiappini.londonweather;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import static com.cchiappini.londonweather.MainActivity.*;
 
 
-public class WeatherActivity extends Activity {
+public class WeatherActivity extends ActionBarActivity {
 
     private String weather;
 
@@ -21,7 +21,7 @@ public class WeatherActivity extends Activity {
 
         setContentView(R.layout.activity_weather);
         View view = findViewById(R.id.weather_text_layout);
-        TextView weatherTextView  = (TextView) view.findViewById(R.id.weather_text);
+        TextView weatherTextView  = (TextView) view.findViewById(R.id.weather_description);
         weatherTextView.setText(weather);
     }
 

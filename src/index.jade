@@ -22,11 +22,7 @@ html
 
       section.richmond-food-background
         div.background-div
-            h2 life is tough at eBay
-
-      section.idea-background
-        div.background-div
-            h2 you've got the million pound idea
+            h2 Life is tough at eBay
 
       section.my-idea-background
         div.background-div
@@ -34,56 +30,39 @@ html
 
       section.baby-lego-background
           div.background-div
-            h2 let's build my idea
+            h2 Time to build
               h3.bullet
                   ul
-                    li Install tools following <a href="https://developer.android.com/training/basics/firstapp/index.html">Android Developers website</a>
+                    li <a href="https://developer.android.com/training/basics/firstapp/index.html">Android studio</a>
+                    li <a href="https://www.genymotion.com/#!/">Genymotion</a>
+                    li <a href="https://gradle.org/">Gradle</a>
 
+      section.green
+            pre.size-dimension
+                code.language-javascript.
+                     protected void onCreate(Bundle savedInstanceState) {
+                         ........
 
-      section.first-activity-background
+                         toolbar = (Toolbar) findViewById(weather_toolbar);
+                         toolbar.setTitle("Richmond");
+                         setSupportActionBar(toolbar);<br>
+
+                         tempView =(TextView) findViewById(weather_temp);
+                         tempView.setText(15);<br>
+
+                         descriptionView = (TextView) findViewById(weather_description);
+                         descriptionView.setText("Sun is shining");<br>
+
+                         iconView = (ImageView) findViewById(weather_icon);
+                         iconView.setImageResource(R.drawable.sun);
+
+      section.green
         div.background-div
-            h2 let's code the first activity
-            pre.size-dimension
-              code
-                | public class MainActivity extends Activity {
+            h2 Layout
+            include activity_main.html
 
-                |     @Override
-                |     protected void onCreate(Bundle savedInstanceState) {
-                |         super.onCreate(savedInstanceState);
-                |         setContentView(R.layout.activity_main);
-                |     }
-
-            pre.size-dimension
-              code
-                | &#60;Button android:layout_width="wrap_content"
-                |     android:layout_height="wrap_content"
-                |     android:text="@string/weather_richmond"
-                |     android:id="@+id/weather_button"
-                |     android:layout_alignParentTop="true"
-                |     android:layout_alignParentStart="true" /&#62;;
-
-      section.second-activity-background
-        div.background-div
-            h2 let's code the second activity
-            pre.size-dimension
-              code
-                | public class WeatherActivity extends Activity {
-
-                |      @Override
-                |      protected void onCreate(Bundle savedInstanceState) {
-                |          super.onCreate(savedInstanceState);
-                |          setContentView(R.layout.activity_weather);
-                |      }
-
-            pre.size-dimension
-              code
-                | &#60;TextView android:text="@string/sun_is_shining"
-                |   android:layout_width="wrap_content"
-                |   android:layout_height="wrap_content" /&#62;;
-
-      section
-        div.background-div
-            h2 Result
+      section.green
+        img.img-fit(src="images/shapshot1.png")
 
       section.people-coding-background
         div.background-div
@@ -97,63 +76,123 @@ html
         div.background-div
             h2 I need testing
 
-      section
+      section.sweets
         div.background-div
             h2 Testing frameworks for Android
 
-      section
+      section.green
         div.background-div
-            h2 Unit testing
+            h2.bullet Unit testing in Java
             br
             ul
-              li Extract all the java code in a separate module and test as unit tests
-              li Unit testing support Android Studio 1.1
-              li Use Instrumentation or Robotium
+              li Java module
+              li Junit tests
           
-      section
-        div.background-div
-            h2 Java module - test
+      section.green
             pre.size-dimension
-              code.language-javascript.
-                public class WeatherOracleTest {
+                code.language-javascript.
                     @Test
-                    public void testWeatherOracle(){
-                        assertEquals(SUN_IS_SHINING, weatherOracle.getWeather());
+                    public void shouldReturnASunnyWeather(){
+                        Weather expectedWeather =
+                            new Weather(SUN_IS_SHINING, TEMPERATURE, ICON_ID);
+                        assertEquals(expectedWeather, weatherOracle.getWeather());
                     }
 
-      section
-        div.background-div
-            h2 Java module - code
+      section.green
             pre.size-dimension
-              code.language-javascript.
-                public class WeatherOracle {
-                    public static final String SUN_IS_SHINING = "Sun is shining";<br>
-                    public String getWeather(){
-                        return SUN_IS_SHINING;
+                code.language-javascript.
+                    public class WeatherOracle {
+                        public static final String SUN_IS_SHINING = "Sun is shining";
+                        public static final double TEMPERATURE = 15.0;
+                        public static final String ICON_ID = "sun";
+                        public Weather getWeather(){
+                            return new Weather(SUN_IS_SHINING, TEMPERATURE, ICON_ID);
+                        }
                     }
-          
-      section
-        div.background-div
-            h2 Functional testing
-            pre.size-dimension
-              code
-                | @Test
-                | public void userCanGetWeatherInLondon() {<br>
-                |    WebElement weatherButton = findWeatherButton();<br>
-                |    weatherButton.click();<br>
-                |    WebElement weatherText = findWeatherText();
-                |    assertEquals(SUN_IS_SHINING, weatherText.getText());
 
-      section
+      section.green
+              div.background-div
+                  h2.bullet Unit testing for Android
+                  br
+                  ul
+                      li Android TestCase
+                      li Use Instrumentation or Robotium
+                      li Unit testing support Android Studio 1.1
+
+      section.green
+            pre.size-dimension
+                code.language-javascript.
+                    @RunWith(com.cchiappini.londonweather.RobolectricGradleTestRunner.class)
+                    public class WeatherIconMapperTest {
+
+                        @Test
+                        public void shouldReturnTheRightIconWhenSunny()
+                                throws IconNotFoundException {
+                            Weather weather = new Weather(WEATHER_DESCRIPTION,
+                                    WEATHER_TEMPERATURE, SUN_ICON_ID);
+                            int expectedIcon = R.drawable.sun;
+                            assertEquals(expectedIcon,
+                                    getIconResourceIdForWeather(weather));
+                            }
+
+
+      section.green
+                  pre.size-dimension
+                      code.language-javascript.
+                            @Test (expected=IconNotFoundException.class)
+                            public void shouldThrowAnExceptionWhenIconIsNotFound()
+                                    throws IconNotFoundException {
+                                Weather weather = new Weather(A_WEATHER_DESCRIPTION,
+                                    A_WEATHER_TEMPERATURE, UNKNOWN_ICON_ID);
+                                int expectedIcon = R.drawable.sun;
+                                assertEquals(expectedIcon,getIconResourceIdForWeather(weather));
+                            }
+
+
+      section.green
+              pre.size-dimension
+                  code.language-javascript.
+                    public class WeatherIconMapper {
+
+                        public static int getIconResourceIdForWeather(Weather weather)
+                                throws IconNotFoundException {
+                            if(weather.getWeatherIconId().equals("sun")) {
+                                return R.drawable.sun;
+                            }
+                            throw new IconNotFoundException();
+                        }
+                    }
+
+      section.green
+              div.background-div
+                  h2 Functional testing
+                  br
+                  ul
+                    li Selenium
+                    li Calabash
+                    li and many more...
+
+
+      section.green
+            pre.size-dimension
+                code.language-javascript.
+                    @Test
+                    public void userCanGetWeatherDescription() {
+                        WebElement weatherText = findWeatherText();
+                        assertEquals(SUN_IS_SHINING, weatherText.getText());
+                    }
+
+                    @Test
+                    public void userCanGetWeatherTemperature() {
+                        WebElement weatherTemp = findTemperatureText();
+                        assertEquals(EXPECTED_TEMPERATURE, weatherTemp.getText());
+                    }
+
+      section.nutella
         div.background-div
             h2 Testing and CI
-            h3 Get feedback as early as possible (you’ll be fixing things late)
-            h3 CI tools help to facilitate not only building, testing and deploying software, but the entire release process
-            h3 Importance of alerting
-            h3 Record their result
-            h3 First step to continue deployment?
 
-      section
+      section.green
         div.background-div
             h2 Your CI alternatives
             h3.bullet
@@ -173,9 +212,8 @@ html
                 li community boxes and in queues
                 li subscription for no waiting and concurrent jobs
 
-      section
+      section.green
         div.background-div
-            h2 Travis configuration
             h3 .travis.yml
             pre.size-dimension
                 code
@@ -187,15 +225,17 @@ html
                     | ...<br>
                     | before_script:
                     |   # Create and start emulator
-                    |    - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+                    |    - echo no | android create avd --force -n test
+                    |       -t $ANDROID_TARGET --abi $ANDROID_ABI
                     |    - emulator -avd test -no-skin -no-audio -no-window &
                     |    - adb wait-for-device
                     |    - adb shell input keyevent 82 &<br>
                     |  script:
                     |      - ./gradlew clean build
 
-      section
+      section.green
         div.background-div
             h2 My CI little story
+
 
     script(src='build/build.js')
