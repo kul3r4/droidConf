@@ -34,6 +34,10 @@ html
         div.background-div
             h2 weather today?
 
+      section.green
+        div.background-div
+            h2 Add a sketch here
+
       section.baby-lego-background
           div.background-div
             h2 Time to build
@@ -88,22 +92,16 @@ html
 
       section.green
         div.background-div
+            h2.bullet Modules
+            img.img-small-with-text(src="images/modules.png")
+
+      section.green
+        div.background-div
             h2 Unit testing
 
       section.green
         div.background-div
-            h2.bullet Modules
-            img.img-small(src="images/modules.png")
-            br
-            br
-            ul
-                li separation of concerns
-                li reusability
-                li supported by Android Studio
-
-      section.green
-        div.background-div
-            h2.bullet Java module
+            h2.bullet Java testing
             br
             ul
               li Junit tests
@@ -114,11 +112,14 @@ html
                     @Test
                     public void shouldReturnASunnyWeather(){
                         Weather expectedWeather =
-                            new Weather(SUN_IS_SHINING, TEMPERATURE, ICON_ID);
+                            new Weather("Sun is shining", 15.0, "sun");
                         assertEquals(expectedWeather, weatherOracle.getWeather());
                     }
 
       section.green
+            pre.size-dimension
+                code.language-javascript.
+                    assertEquals(expectedWeather, weatherOracle.getWeather());
             pre.size-dimension
                 code.language-javascript.
                     public class WeatherOracle {
@@ -132,7 +133,7 @@ html
 
       section.green
               div.background-div
-                  h2.bullet Android module
+                  h2.bullet Android testing
                   br
                   ul
                       li Android test framework
@@ -169,8 +170,8 @@ html
                         @Test
                         public void shouldReturnTheRightIconWhenSunny()
                                 throws IconNotFoundException {
-                            Weather weather = new Weather(WEATHER_DESCRIPTION,
-                                    WEATHER_TEMPERATURE, SUN_ICON_ID);
+                            Weather weather = new Weather("Sun is shining",
+                                    15.0, "sun");
                             int expectedIcon = R.drawable.sun;
                             assertEquals(expectedIcon,
                                     getIconResourceIdForWeather(weather));
@@ -178,18 +179,10 @@ html
 
 
       section.green
-        pre.size-dimension
-                      code.language-javascript.
-                            public void shouldThrowAnExceptionWhenIconIsNotFound()
-                                    throws IconNotFoundException {
-                                Weather weather = new Weather(A_WEATHER_DESCRIPTION,
-                                    A_WEATHER_TEMPERATURE, UNKNOWN_ICON_ID);
-                                int expectedIcon = R.drawable.sun;
-                                assertEquals(expectedIcon,getIconResourceIdForWeather(weather));
-                            }
-
-
-      section.green
+              pre.size-dimension
+                  code.language-javascript.
+                    assertEquals(expectedIcon,
+                        getIconResourceIdForWeather(weather));
               pre.size-dimension
                   code.language-javascript.
                     public class WeatherIconMapper {
@@ -205,7 +198,7 @@ html
 
       section.doughnuts
               div.background-div
-                  h2 Functional testing
+                  h2.bullet Functional testing
                   br
                   ul
                     li Selendroid
@@ -223,7 +216,6 @@ html
                 li open source automation framework
                 li android native, hybrid and mobile web application
                 li emulator and real device
-                li Json Wire Protocol to run webdriver test scripts on device
                 li integration with selenium grid for parallel execution on multiple node
 
       section.green
@@ -232,14 +224,52 @@ html
                     @Test
                     public void userCanGetWeatherDescription() {
                         WebElement weatherText = findWeatherText();
-                        assertEquals(SUN_IS_SHINING, weatherText.getText());
+                        assertEquals("sun is shining", weatherText.getText());
                     }
 
                     @Test
                     public void userCanGetWeatherTemperature() {
                         WebElement weatherTemp = findTemperatureText();
-                        assertEquals(EXPECTED_TEMPERATURE, weatherTemp.getText());
+                        assertEquals("15.0", weatherTemp.getText());
                     }
+
+      section.green
+        pre.size-dimension
+            code.language-javascript.
+                @Before
+                    public void setup() throws Exception {
+                        SelendroidConfiguration config = new SelendroidConfiguration();
+                        //my apkPath is /Users/cchiappini/IProjects/droidConfRefactor
+                        // /londonWeather/build/outputs/apk/londonWeather-debug.apk
+                        String apkPath = System.getProperty("apkPath");
+                        //my aut is "com.cchiappini.londonweather"
+                        String aut = System.getProperty("aut");
+                        //my hubURL is http://localhost:4444/wd/hub
+                        String hubUrl = System.getProperty("hubURL");
+                        config.addSupportedApp(apkPath);
+                        config.setPort(4444);
+                        SelendroidLauncher selendroidServer = new SelendroidLauncher(config);
+                        selendroidServer.launchSelendroid();
+
+                        SelendroidCapabilities capa = new SelendroidCapabilities(aut);
+                        driver = new SelendroidDriver(new URL(hubUrl), capa);
+
+
+      section.green
+        pre.size-dimension
+            code.language-javascript.
+                    private WebElement findTemperatureText() {
+                        return findElementById(WEATHER_TEMP);
+                    }
+
+                    private WebElement findWeatherText() {
+                        return findElementById(WEATHER_DESCRIPTION);
+                    }
+
+                    private WebElement findElementById(String id) {
+                        return driver.findElement(By.id(id));
+                    }
+
 
       section.nutella
         div.background-div
@@ -275,6 +305,16 @@ html
                 li community boxes and in queues
                 li subscription for no waiting and concurrent jobs
 
+      section.steps
+        div.background-div
+            h2.bullet steps
+            br
+            ul
+                li go to <a href="https://travis-ci.org">Travis CI</a>
+                li sign In with Github user
+                li activate GitHub Webhook
+                li add .travis.yml file to your repository
+
       section.green
         div.background-div
             h3 .travis.yml
@@ -297,35 +337,57 @@ html
                     |      - ./gradlew clean build
 
       section.green
-        img.img-fit(src="images/travis-snaphot1.png")
+        img.img-fit-entire-screen(src="images/travis-snaphot1.png")
 
       section.green
-        div.background-div
-                img.img-fit(src="images/jenkins_logo.png").bullet
+        img.img-fit-entire-screen
+
+      //
+          section.green
+            div.background-div
+                    img.img-fit(src="images/jenkins_logo.png").bullet
+                    br
+                    ul
+                        li plugins
+                        li support the entire deployment pipeline
+                        li web interface
+                        li manually updating
+
+          section.green
+            div.background-div
+                img.img-fit(src="images/chef.svg").bullet
+                br
                 br
                 ul
-                    li plugins
-                    li support the entire deployment pipeline
-                    li web interface
-                    li manually updating
+                    li infrastructure as code
+                    li automate your infrastructure
+                    li more maintainable, versionable, testable and collaborative
 
-      section.green
-        div.background-div
-            img.img-fit(src="images/chef.svg").bullet
-            br
-            br
-            ul
-                li infrastructure as code
-                li automate your infrastructure
-                li more maintainable, versionable, testable and collaborative
 
-      section.green
-        div.background-div
-            h2 Jenkins for Android and Chef
+          section.cooking
+            div.background-div
+                h2.bullet
+                br
+                ul
+                    li a computer managed by Chef is a node
+                    li a recipe defined in a cookbook
+                    li recipe applied to the node
 
-      section.green
-        div.background-div
-            h2 Jenkins jobs
+          section.green
+            div.background-div
+                h2.bullet How we worked with Chef for Android SDK
+                br
+                ul
+                    li ruby
+                    li remote machine
+                    li <a href="https://supermarket.chef.io">Chef supermarket</a>
+                    li clone the recipe in our repository
+                    li customized the recipe
+                    li run the recipe on the remote machine
+
+          section.green
+            div.background-div
+                h2 Jenkins jobs
 
       section.green
         div.background-div
