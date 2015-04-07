@@ -1,0 +1,224 @@
+<html>
+<head>
+<title>index.jade</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: rgb(0,0,0); font-weight: normal; font-style: normal; }
+.s0 { }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#C0C0C0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+index.jade</FONT>
+</center></TD></TR></TABLE>
+<pre>
+
+<span class="s0">doctype html 
+html 
+  head 
+    meta(charset='utf-8') 
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1') 
+    title Android development: from an idea to your first (tested) app 
+ 
+    link(rel='stylesheet', type='text/css', href='build/build.css') 
+ 
+  body 
+ 
+    article 
+ 
+      section 
+        h1 Android development: from an idea to your first (tested) app 
+ 
+      section.richmond-view 
+        div.background-div 
+            h2 Chiara Chiappini 
+            h3 Agile Software Developer @eBay 
+            h3 &lt;a href=&quot;http://twitter.com/chiarachiappini&quot;&gt;@chiarachiappini&lt;/a&gt; 
+ 
+      section.richmond-food-background 
+        div.background-div 
+            h2 Life is tough at eBay 
+ 
+      section.my-idea-background 
+        div.background-div 
+            h2 What's the weather like in Richmond today? 
+ 
+      section.baby-lego-background 
+          div.background-div 
+            h2 Time to build 
+              h3.bullet 
+                  ul 
+                    li &lt;a href=&quot;https://developer.android.com/training/basics/firstapp/index.html&quot;&gt;Android studio&lt;/a&gt; 
+                    li &lt;a href=&quot;https://www.genymotion.com/#!/&quot;&gt;Genymotion&lt;/a&gt; 
+                    li &lt;a href=&quot;https://gradle.org/&quot;&gt;Gradle&lt;/a&gt; 
+ 
+      section 
+        div.background-div 
+            h2 Main activity 
+            pre.size-dimension 
+                code.language-javascript. 
+                     protected void onCreate(Bundle savedInstanceState) { 
+                         ........ 
+ 
+                         toolbar = (Toolbar) findViewById(weather_toolbar); 
+                         toolbar.setTitle(&quot;Richmond&quot;); 
+                         setSupportActionBar(toolbar);&lt;br&gt; 
+ 
+                         tempView =(TextView) findViewById(weather_temp); 
+                         tempView.setText(15);&lt;br&gt; 
+ 
+                         descriptionView = (TextView) findViewById(weather_description); 
+                         descriptionView.setText(&quot;Sun is shining&quot;);&lt;br&gt; 
+ 
+                         iconView = (ImageView) findViewById(weather_icon); 
+                         iconView.setImageResource(R.drawable.sun); 
+ 
+      section 
+        div.background-div 
+            h2 Layout 
+            include layout.html 
+ 
+      section 
+        div.background-div 
+            h2 Result 
+ 
+      section.people-coding-background 
+        div.background-div 
+            h2.bullet Now the real fun starts 
+            br 
+            ul 
+              li New features 
+              li Someone is joining you 
+ 
+      section.quality 
+        div.background-div 
+            h2 I need testing 
+ 
+      section 
+        div.background-div 
+            h2 Testing frameworks for Android 
+ 
+      section 
+        div.background-div 
+            h2 Unit testing 
+            br 
+            ul 
+              li Extract all the java code in a separate module and test as unit tests 
+              li Unit testing support Android Studio 1.1 
+              li Use Instrumentation or Robotium 
+           
+      section 
+        div.background-div 
+            h2 Java module - test 
+            pre.size-dimension 
+              code.language-javascript. 
+                public class WeatherOracleTest { 
+                    @Test 
+                    public void testWeatherOracle(){ 
+                        assertEquals(SUN_IS_SHINING, weatherOracle.getWeather()); 
+                    } 
+ 
+      section 
+        div.background-div 
+            h2 Java module - code 
+            pre.size-dimension 
+              code.language-javascript. 
+                public class WeatherOracle { 
+                    public static final String SUN_IS_SHINING = &quot;Sun is shining&quot;;&lt;br&gt; 
+                    public String getWeather(){ 
+                        return SUN_IS_SHINING; 
+                    } 
+           
+      section 
+        div.background-div 
+            h2 Functional testing 
+            pre.size-dimension 
+              code 
+                | @Test 
+                | public void userCanGetWeatherInLondon() {&lt;br&gt; 
+                |    WebElement weatherButton = findWeatherButton();&lt;br&gt; 
+                |    weatherButton.click();&lt;br&gt; 
+                |    WebElement weatherText = findWeatherText(); 
+                |    assertEquals(SUN_IS_SHINING, weatherText.getText()); 
+ 
+      section 
+        div.background-div 
+            h2 Testing and CI 
+            h3 Get feedback as early as possible (you’ll be fixing things late) 
+            h3 CI tools help to facilitate not only building, testing and deploying software, but the entire release process 
+            h3 Importance of alerting 
+            h3 Record their result 
+            h3 First step to continue deployment? 
+ 
+      section 
+        div.background-div 
+            h2 Your CI alternatives 
+            h3.bullet 
+            br 
+            ul 
+              li Travis 
+              li Jenkins 
+              li ..and many more 
+ 
+      section.queue 
+        div.background-div 
+            h2 Travis 
+            h3.bullet 
+            br 
+            ul 
+                li free for public repositories 
+                li community boxes and in queues 
+                li subscription for no waiting and concurrent jobs 
+ 
+      section 
+        div.background-div 
+            h2 Travis configuration 
+            h3 .travis.yml 
+            pre.size-dimension 
+                code 
+                    | language: android 
+                    | jdk: oraclejdk7 
+                    |  env: 
+                    |  matrix: 
+                    |     - ANDROID_TARGET=android-19  ANDROID_ABI=armeabi-v7a 
+                    | ...&lt;br&gt; 
+                    | before_script: 
+                    |   # Create and start emulator 
+                    |    - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI 
+                    |    - emulator -avd test -no-skin -no-audio -no-window &amp; 
+                    |    - adb wait-for-device 
+                    |    - adb shell input keyevent 82 &amp;&lt;br&gt; 
+                    |  script: 
+                    |      - ./gradlew clean build 
+ 
+      section 
+        div.background-div 
+            h2 My CI little story 
+ 
+ 
+      section.second-activity-background 
+        div.background-div 
+            h2 let's code the second activity 
+                pre.size-dimension 
+                     code 
+                       | public class WeatherActivity extends Activity { 
+ 
+                       |      @Override 
+                       |      protected void onCreate(Bundle savedInstanceState) { 
+                       |          super.onCreate(savedInstanceState); 
+                       |          setContentView(R.layout.activity_weather); 
+                       |      } 
+ 
+                   pre.size-dimension 
+                     code 
+                       | &amp;#60;TextView android:text=&quot;@string/sun_is_shining&quot; 
+                       |   android:layout_width=&quot;wrap_content&quot; 
+                       |   android:layout_height=&quot;wrap_content&quot; /&amp;#62;; 
+ 
+ 
+    script(src='build/build.js') 
+</span></pre>
+</body>
+</html>

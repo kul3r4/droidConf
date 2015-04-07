@@ -27,14 +27,22 @@ public class LondonWeatherAcceptanceTest {
     @Before
     public void setup() throws Exception {
         SelendroidConfiguration config = new SelendroidConfiguration();
-        config.addSupportedApp("/Users/cchiappini/IProjects/droidConfRefactor/londonWeather/build/outputs/apk/londonWeather-debug.apk");
+        //mine is /Users/cchiappini/IProjects/droidConfRefactor
+        // /londonWeather/build/outputs/apk/londonWeather-debug.apk
+        String apkPath = System.getProperty("apkPath");
+        //aut is for me "com.cchiappini.londonweather"
+        String aut = System.getProperty("aut");
+        //my hubURL is http://localhost:4444/wd/hub
+        String hubUrl = System.getProperty("hubURL");
+        config.addSupportedApp(apkPath);
         config.setPort(4444);
         SelendroidLauncher selendroidServer = new SelendroidLauncher(config);
         selendroidServer.launchSelendroid();
 
-        SelendroidCapabilities capa = new SelendroidCapabilities("com.cchiappini.londonweather");
-        capa.setPlatformVersion(DeviceTargetPlatform.ANDROID18);
-        driver = new SelendroidDriver(new URL("http://localhost:4444/wd/hub"), capa);
+
+        SelendroidCapabilities capa = new SelendroidCapabilities(aut);
+        //capa.setPlatformVersion(DeviceTargetPlatform.ANDROID18);
+        driver = new SelendroidDriver(new URL(hubUrl), capa);
     }
 
     @Test
@@ -49,6 +57,7 @@ public class LondonWeatherAcceptanceTest {
         assertEquals(EXPECTED_TEMPERATURE, weatherTemp.getText());
     }
 
+
     private WebElement findTemperatureText() {
         return findElementById(WEATHER_TEMP);
     }
@@ -57,14 +66,9 @@ public class LondonWeatherAcceptanceTest {
         return findElementById(WEATHER_DESCRIPTION);
     }
 
-//    private WebElement findWeatherButton() {
-//        return findElementById("weather_button");
-//    }
-
     private WebElement findElementById(String id) {
         return driver.findElement(By.id(id));
     }
-
     @After
     public void tearDown() {
         driver.quit();

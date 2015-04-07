@@ -18,6 +18,7 @@
           <h2>Chiara Chiappini</h2>
           <h3>Agile Software Developer @eBay</h3>
           <h3><a href="http://twitter.com/chiarachiappini">@chiarachiappini</a></h3>
+          <h3><a href="http://kul3r4.github.io/droidConf/dist/">http://kul3r4.github.io/droidConf/dist/</a></h3>
           <h3><a href="https://github.com/kul3r4/droidConf">https://github.com/kul3r4</a></h3>
         </div>
       </section>
@@ -36,6 +37,7 @@
           <h2>weather today?</h2>
         </div>
       </section>
+      <section class="green"><img src="images/sketch.jpg" class="img-fit"></section>
       <section class="baby-lego-background">
         <div class="background-div">
           <h2>Time to build
@@ -130,22 +132,17 @@
       </section>
       <section class="green">
         <div class="background-div">
+          <h2 class="bullet">Modules</h2><img src="images/modules.png" class="img-small-with-text">
+        </div>
+      </section>
+      <section class="green">
+        <div class="background-div">
           <h2>Unit testing</h2>
         </div>
       </section>
       <section class="green">
         <div class="background-div">
-          <h2 class="bullet">Modules</h2><img src="images/modules.png" class="img-small"><br><br>
-          <ul>
-            <li>separation of concerns</li>
-            <li>reusability</li>
-            <li>supported by Android Studio</li>
-          </ul>
-        </div>
-      </section>
-      <section class="green">
-        <div class="background-div">
-          <h2 class="bullet">Java module</h2><br>
+          <h2 class="bullet">Java testing</h2><br>
           <ul>
             <li>Junit tests</li>
           </ul>
@@ -155,12 +152,13 @@
         <pre class="size-dimension"><code class="language-javascript">@Test
 public void shouldReturnASunnyWeather(){
     Weather expectedWeather =
-        new Weather(SUN_IS_SHINING, TEMPERATURE, ICON_ID);
+        new Weather("Sun is shining", 15.0, "sun");
     assertEquals(expectedWeather, weatherOracle.getWeather());
 }
 </code></pre>
       </section>
       <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">assertEquals(expectedWeather, weatherOracle.getWeather());</code></pre>
         <pre class="size-dimension"><code class="language-javascript">public class WeatherOracle {
     public static final String SUN_IS_SHINING = "Sun is shining";
     public static final double TEMPERATURE = 15.0;
@@ -173,7 +171,7 @@ public void shouldReturnASunnyWeather(){
       </section>
       <section class="green">
         <div class="background-div">
-          <h2 class="bullet">Android module</h2><br>
+          <h2 class="bullet">Android testing</h2><br>
           <ul>
             <li>Android test framework</li>
             <li>Robolectric</li>
@@ -208,8 +206,8 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
     @Test
     public void shouldReturnTheRightIconWhenSunny()
             throws IconNotFoundException {
-        Weather weather = new Weather(WEATHER_DESCRIPTION,
-                WEATHER_TEMPERATURE, SUN_ICON_ID);
+        Weather weather = new Weather("Sun is shining",
+                15.0, "sun");
         int expectedIcon = R.drawable.sun;
         assertEquals(expectedIcon,
                 getIconResourceIdForWeather(weather));
@@ -218,17 +216,8 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
 </code></pre>
       </section>
       <section class="green">
-        <pre class="size-dimension"><code class="language-javascript">public void shouldThrowAnExceptionWhenIconIsNotFound()
-        throws IconNotFoundException {
-    Weather weather = new Weather(A_WEATHER_DESCRIPTION,
-        A_WEATHER_TEMPERATURE, UNKNOWN_ICON_ID);
-    int expectedIcon = R.drawable.sun;
-    assertEquals(expectedIcon,getIconResourceIdForWeather(weather));
-}
-
-</code></pre>
-      </section>
-      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">assertEquals(expectedIcon,
+    getIconResourceIdForWeather(weather));</code></pre>
         <pre class="size-dimension"><code class="language-javascript">public class WeatherIconMapper {
 
     public static int getIconResourceIdForWeather(Weather weather)
@@ -243,7 +232,7 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
       </section>
       <section class="doughnuts">
         <div class="background-div">
-          <h2>Functional testing</h2><br>
+          <h2 class="bullet">Functional testing</h2><br>
           <ul>
             <li>Selendroid</li>
             <li>Calabash</li>
@@ -261,7 +250,6 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
             <li>open source automation framework</li>
             <li>android native, hybrid and mobile web application</li>
             <li>emulator and real device</li>
-            <li>Json Wire Protocol to run webdriver test scripts on device</li>
             <li>integration with selenium grid for parallel execution on multiple node</li>
           </ul>
         </div>
@@ -270,14 +258,50 @@ public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActiv
         <pre class="size-dimension"><code class="language-javascript">@Test
 public void userCanGetWeatherDescription() {
     WebElement weatherText = findWeatherText();
-    assertEquals(SUN_IS_SHINING, weatherText.getText());
+    assertEquals("sun is shining", weatherText.getText());
 }
 
 @Test
 public void userCanGetWeatherTemperature() {
     WebElement weatherTemp = findTemperatureText();
-    assertEquals(EXPECTED_TEMPERATURE, weatherTemp.getText());
+    assertEquals("15.0", weatherTemp.getText());
 }
+</code></pre>
+      </section>
+      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">@Before
+    public void setup() throws Exception {
+        SelendroidConfiguration config = new SelendroidConfiguration();
+        //my apkPath is /Users/cchiappini/IProjects/droidConfRefactor
+        // /londonWeather/build/outputs/apk/londonWeather-debug.apk
+        String apkPath = System.getProperty("apkPath");
+        //my aut is "com.cchiappini.londonweather"
+        String aut = System.getProperty("aut");
+        //my hubURL is http://localhost:4444/wd/hub
+        String hubUrl = System.getProperty("hubURL");
+        config.addSupportedApp(apkPath);
+        config.setPort(4444);
+        SelendroidLauncher selendroidServer = new SelendroidLauncher(config);
+        selendroidServer.launchSelendroid();
+
+        SelendroidCapabilities capa = new SelendroidCapabilities(aut);
+        driver = new SelendroidDriver(new URL(hubUrl), capa);
+
+</code></pre>
+      </section>
+      <section class="green">
+        <pre class="size-dimension"><code class="language-javascript">private WebElement findTemperatureText() {
+    return findElementById(WEATHER_TEMP);
+}
+
+private WebElement findWeatherText() {
+    return findElementById(WEATHER_DESCRIPTION);
+}
+
+private WebElement findElementById(String id) {
+    return driver.findElement(By.id(id));
+}
+
 </code></pre>
       </section>
       <section class="nutella">
@@ -318,6 +342,17 @@ public void userCanGetWeatherTemperature() {
           </ul>
         </div>
       </section>
+      <section class="steps">
+        <div class="background-div">
+          <h2 class="bullet">steps</h2><br>
+          <ul>
+            <li>go to <a href="https://travis-ci.org">Travis CI</a></li>
+            <li>sign In with Github user</li>
+            <li>activate GitHub Webhook</li>
+            <li>add .travis.yml file to your repository</li>
+          </ul>
+        </div>
+      </section>
       <section class="green">
         <div class="background-div">
           <h3>.travis.yml</h3>
@@ -338,38 +373,76 @@ before_script:
      - ./gradlew clean build</code></pre>
         </div>
       </section>
-      <section class="green"><img src="images/travis-snaphot1.png" class="img-fit"></section>
+      <section class="green"><img src="images/travis-snaphot1.png" class="img-fit-entire-screen"></section>
+      <section class="green"><img src="images/gitAndTravis.png" class="img-fit-entire-screen"></section>
+      <!--
+      section.green
+        div.background-div
+                img.img-fit(src="images/jenkins_logo.png").bullet
+                br
+                ul
+                    li plugins
+                    li support the entire deployment pipeline
+                    li web interface
+                    li manually updating
+      
+      section.green
+        div.background-div
+            img.img-fit(src="images/chef.svg").bullet
+            br
+            br
+            ul
+                li infrastructure as code
+                li automate your infrastructure
+                li more maintainable, versionable, testable and collaborative
+      
+      
+      section.cooking
+        div.background-div
+            h2.bullet
+            br
+            ul
+                li a computer managed by Chef is a node
+                li a recipe defined in a cookbook
+                li recipe applied to the node
+      
+      section.green
+        div.background-div
+            h2.bullet How we worked with Chef for Android SDK
+            br
+            ul
+                li ruby
+                li remote machine
+                li <a href="https://supermarket.chef.io">Chef supermarket</a>
+                li clone the recipe in our repository
+                li customized the recipe
+                li run the recipe on the remote machine
+      
+      section.green
+        div.background-div
+            h2 Jenkins jobs
+      
+      -->
       <section class="green">
-        <div class="background-div"><img src="images/jenkins_logo.png" class="img-fit bullet"><br>
+        <div class="background-div">
+          <h2 class="bullet">Summarizing</h2><br>
           <ul>
-            <li>plugins</li>
-            <li>support the entire deployment pipeline</li>
-            <li>web interface</li>
-            <li>manually updating</li>
+            <li>idea</li>
+            <li>prototype</li>
+            <li>testing</li>
+            <li>CI</li>
           </ul>
         </div>
       </section>
-      <section class="green">
-        <div class="background-div"><img src="images/chef.svg" class="img-fit bullet"><br><br>
-          <ul>
-            <li>infrastructure as code</li>
-            <li>automate your infrastructure</li>
-            <li>more maintainable, versionable, testable and collaborative</li>
-          </ul>
-        </div>
-      </section>
-      <section class="green">
+      <section class="richmond-walk-end">
         <div class="background-div">
-          <h2>Jenkins for Android and Chef</h2>
+          <h2>Ready to go for a walk</h2>
         </div>
       </section>
-      <section class="green">
+      <section class="questions">
         <div class="background-div">
-          <h2>Jenkins jobs</h2>
+          <h2>Questions?</h2>
         </div>
-      </section>
-      <section class="green">
-        <div class="background-div"></div>
       </section>
     </article>
     <script src="build/build.js"></script>
