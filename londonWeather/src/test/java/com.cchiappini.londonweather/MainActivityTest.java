@@ -1,21 +1,19 @@
 package com.cchiappini.londonweather;
 
 import android.app.Activity;
-import android.test.ActivityInstrumentationTestCase2;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 
+import static junit.framework.Assert.assertNotNull;
+
 @RunWith(com.cchiappini.londonweather.RobolectricGradleTestRunner.class)
-public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity> {
+public class MainActivityTest {
 
     private Activity mainActivity;
 
-    public MainActivityTest() {
-        super(MainActivity.class);
-    }
 
     @Before
     public void setUp() throws Exception {
