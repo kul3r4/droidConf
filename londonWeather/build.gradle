@@ -19,6 +19,10 @@ configurations.all {
 }
 
 android {
+
+  lintOptions {
+    abortOnError false
+  }
 //    compileSdkVersion 21
 //    buildToolsVersion "21.1.2"
 //
