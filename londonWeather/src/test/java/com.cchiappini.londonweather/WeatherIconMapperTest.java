@@ -3,11 +3,14 @@ package com.cchiappini.londonweather;
 import com.cchiappini.londonweather.exception.IconNotFoundException;
 
 import org.junit.Test;
+import org.robolectric.annotation.Config;
 
 import weather.Weather;
 
 import static org.junit.Assert.assertEquals;
 
+
+@Config(emulateSdk = 23)
 public class WeatherIconMapperTest {
 
     private static final String A_WEATHER_DESCRIPTION = "aWeatherDescription";

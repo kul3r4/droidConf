@@ -6,9 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
+import org.robolectric.annotation.Config;
 
 import static junit.framework.Assert.assertNotNull;
 
+@Config(emulateSdk = 23)
 @RunWith(com.cchiappini.londonweather.RobolectricGradleTestRunner.class)
 public class MainActivityTest {
 
