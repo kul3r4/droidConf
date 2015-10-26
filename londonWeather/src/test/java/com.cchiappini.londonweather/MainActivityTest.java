@@ -3,21 +3,18 @@ package com.cchiappini.londonweather;
 import android.app.Activity;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
-import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import static junit.framework.Assert.assertNotNull;
 
-@Config(constants = BuildConfig.class, sdk = 23)
+@Config(constants = BuildConfig.class, sdk = 22)
 @RunWith(MyRobolectricGradleTestRunner.class)
 public class MainActivityTest {
 
     private Activity mainActivity;
-
 
     @Before
     public void setUp() throws Exception {

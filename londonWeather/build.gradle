@@ -12,6 +12,7 @@ buildscript {
 
 repositories {
   mavenCentral()
+  maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
 }
 
 configurations.all {
@@ -76,7 +77,7 @@ dependencies {
 
   testCompile 'junit:junit:4.12'
   testCompile project(':londonweatherlib')
-    testCompile('org.robolectric:robolectric:3.0') {
+    testCompile('org.robolectric:robolectric:3.1-SNAPSHOT') {
         exclude module: 'classworlds'
         exclude module: 'commons-logging'
         exclude module: 'httpclient'
