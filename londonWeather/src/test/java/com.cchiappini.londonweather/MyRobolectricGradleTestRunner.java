@@ -2,26 +2,26 @@ package com.cchiappini.londonweather;
 
 
 import org.junit.runners.model.InitializationError;
-import org.robolectric.AndroidManifest;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.manifest.AndroidManifest;
 import org.robolectric.res.Fs;
 
-public class RobolectricGradleTestRunner extends RobolectricTestRunner {
-    public RobolectricGradleTestRunner(Class<?> testClass) throws InitializationError {
+public class MyRobolectricGradleTestRunner extends RobolectricTestRunner {
+    public MyRobolectricGradleTestRunner(Class<?> testClass) throws InitializationError {
         super(testClass);
     }
 
     @Override
     protected AndroidManifest getAppManifest(Config config) {
-        String myAppPath = RobolectricGradleTestRunner.class.getProtectionDomain()
+        String myAppPath = MyRobolectricGradleTestRunner.class.getProtectionDomain()
                 .getCodeSource()
                 .getLocation()
                 .getPath();
         String manifestPath = myAppPath + "../../../manifests/full/debug/AndroidManifest.xml";
         String resPath = myAppPath + "../../../res/debug";
         String assetPath = myAppPath + "../../../assets/debug";
-        return createAppManifest(Fs.fileFromPath(manifestPath), Fs.fileFromPath(resPath), Fs.fileFromPath(assetPath));
+        return createAppManifest(Fs.fileFromPath(manifestPath), Fs.fileFromPath(resPath), Fs.fileFromPath(assetPath), "com.cchiappini.londonweather");
     }
 
 }

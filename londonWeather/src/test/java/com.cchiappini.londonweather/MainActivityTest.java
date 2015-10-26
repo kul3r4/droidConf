@@ -7,12 +7,13 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
 
 import static junit.framework.Assert.assertNotNull;
 
-@Config(emulateSdk = 23)
-@RunWith(com.cchiappini.londonweather.RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = 23)
+@RunWith(MyRobolectricGradleTestRunner.class)
 public class MainActivityTest {
 
     private Activity mainActivity;
@@ -23,7 +24,6 @@ public class MainActivityTest {
         mainActivity = Robolectric.buildActivity(MainActivity.class).create().get();
     }
 
-    @Ignore
     @Test
     public void testMainActivity() {
         assertNotNull(mainActivity.findViewById(R.id.weather_toolbar));
