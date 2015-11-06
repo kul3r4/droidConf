@@ -23,6 +23,4 @@ before_install:
 
 script:
     - ./gradlew :londonWeather:clean :londonWeather:testDebugUnitTest :londonWeather:connectedAndroidTest
-    #- ls /home/travis/build/kul3r4/droidConf/londonWeather/build/outputs/apk/londonWeather-debug.apk
-    #- ./gradlew :londonWeatherAcceptance:test --stacktrace --debug -DANDROID_HOME=/usr/local/android-sdk/
 
