@@ -13,7 +13,7 @@ android:
   - platform-tools
   - tools
   - extra-android-m2repository
-  - sys-img-armeabi-v7a-android-21
+  - sys-img-armeabi-v7a-addon-google_apis-google-21
 
 before_install:
 - export ANDROID_HOME=/usr/local/android-sdk
