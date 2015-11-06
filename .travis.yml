@@ -3,6 +3,9 @@ jdk: oraclejdk7
 env:
   matrix:
   - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a
+  global:
+     # install timeout in minutes (2 minutes by default)
+      - ADB_INSTALL_TIMEOUT=8
 android:
   components:
   - android-23
@@ -10,6 +13,8 @@ android:
   - platform-tools
   - tools
   - extra-android-m2repository
+  - sys-img-armeabi-v7a-android-21
+
 before_install:
 - export ANDROID_HOME=/usr/local/android-sdk
 - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}
